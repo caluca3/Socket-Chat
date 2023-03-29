@@ -10,7 +10,7 @@ const { googleVerify } = require('../helpers/google-verify');
 const login = async(req, res = response) => {
 
     const { correo, password } = req.body;
-
+    //console.log(response);
     try {
       
         // Verificar si el email existe
@@ -104,9 +104,20 @@ const googleSignin = async(req, res = response) => {
 
 }
 
+const renovarToken = async(req, res = response) =>{
+    const { usuario } = req;
 
+    //Generar JWT
+    const token = await generarJWT(usuario.id);
+
+    res.json({
+        usuario,
+        token
+    })
+}
 
 module.exports = {
     login,
-    googleSignin
+    googleSignin,
+    renovarToken
 }

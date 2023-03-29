@@ -9,10 +9,38 @@
     <title>Document</title>
 </head>
 <body class="container">
-    <h2>Chat</h2>
-    <hr>
 
+    <div class="row mt-5">
+        <div class="col-sm-6">
+            <h3>Enviar mensaje</h3>
+            <hr>
+            <input  type="text" 
+                    id="txtUid"
+                    class="form-control mb-2"
+                    placeholder="Uid"
+                    autocomplete="off">
+            
+            <input  type="text" 
+                    id="txtMsj"
+                    class="form-control mb-2"
+                    placeholder="Mensaje"
+                    autocomplete="off">
+                    
+            <h3>Usuarios</h3>
+            <hr>
+            <ul id="ulUsuarios"></ul>
+        </div>
+        
+        <div class="col-sm-6">
+            <h3>Chat completo</h3>
+            <hr>
+            <ul id="ulMensajes"></ul>
+        </div>
+    </div>
 
+    <button id="btnSalir" class="btn btn-outline-danger">
+        Logout
+    </button>
 
     <script src="./socket.io/socket.io.js"></script>
     <script src="./js/chat.js"></script>

@@ -6,7 +6,7 @@ function handleCredentialResponse(response) {
     //Google token ID_TOKEN
     const body = {id_token:response.credential}
 
-    console.log({response});
+    //console.log({response});
     
     fetch(url + 'google',{
         method:'POST',
@@ -17,7 +17,8 @@ function handleCredentialResponse(response) {
    })
         .then(res => res.json())
         .then(({token}) =>{
-           localStorage.setItem('token',token) 
+           localStorage.setItem('token',token);
+            window.location = 'chat.html';
         })
         .catch(console.warn);
 }
@@ -34,14 +35,15 @@ miFormulario.addEventListener('submit', async(e)=>{
             formData[el.name] = el.value
     
     }
-    await fetch(url ,{
+    await fetch(url + 'login',{
         method:'POST',
         body:JSON.stringify(formData),
         headers:{'Content-Type': 'application/json'}
     })
     .then(res => res.json())
     .then(data =>{
-        console.log(data);
+       // console.log(data);
+        window.location = 'chat.html';
     })
     .catch(err =>{
         console.log(err);
@@ -52,7 +54,7 @@ miFormulario.addEventListener('submit', async(e)=>{
 
 const button = document.getElementById('sing-out');
 button.onclick= ()=>{
-    console.log(google.accounts.id);
+    //console.log(google.accounts.id);
     google.accounts.id.disableAutoSelect();
 
     google.accounts.id.revoke(localStorage.getItem('email'),(done)=>{
